@@ -1,0 +1,79 @@
+:root {
+  --primary: #6366f1;
+  --bg: #f3f4f6;
+  --card: #ffffff;
+  --text: #1f2937;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.player-card {
+  background: var(--card);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  width: 350px;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.song-title {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Ocultar el input original y crear uno bonito */
+#file-input { display: none; }
+.custom-file-upload {
+  background: var(--primary);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: 0.3s;
+}
+
+.main-audio {
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+button {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s;
+}
+
+button:active { transform: scale(0.95); }
+
+.btn-primary { background: var(--primary); color: white; }
+.btn-secondary { background: #e5e7eb; color: var(--text); }

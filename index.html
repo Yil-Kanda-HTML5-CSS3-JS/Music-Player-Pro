@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player Pro</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="player-card">
+    <div class="header">
+      <h2>Reproductor</h2>
+      <label for="file-input" class="custom-file-upload">Subir Música</label>
+      <input type="file" id="file-input" multiple accept="audio/*" />
+    </div>
+
+    <div class="info-section">
+      <div id="songTitle" class="song-title">Selecciona una canción</div>
+      <p class="status">Listo para reproducir</p>
+    </div>
+
+    <audio id="audio" class="main-audio" controls></audio>
+
+    <div class="controls">
+      <button onclick="prevTrack()" class="btn-secondary">Anterior</button>
+      <button onclick="nextTrack()" class="btn-primary">Siguiente</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
