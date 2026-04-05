@@ -1,41 +1,51 @@
 const audioElement = document.getElementById('audio');
 const songTitleElement = document.getElementById('songTitle');
 const fileInput = document.getElementById('file-input');
+const playlistElement = document.getElementById('playlist');
 
 let songs = [];
 let currentSongIndex = 0;
-let currentObjectURL = null; // Guardamos la URL actual para liberarla después
+let currentObjectURL = null;
 
 fileInput.addEventListener('change', (e) => {
-  // Convertimos la lista de archivos en un array
   songs = Array.from(e.target.files).filter(file => file.type.startsWith('audio/'));
   
   if (songs.length > 0) {
+    updatePlaylistUI();
     currentSongIndex = 0;
     loadSong(currentSongIndex);
   }
 });
 
+function updatePlaylistUI() {
+    playlistElement.innerHTML = "";
+    songs.forEach((song, index) => {
+        const li = document.createElement('li');
+        li.textContent = `${index + 1}. ${song.name.replace(/\.[^/.]+$/, "")}`;
+        li.onclick = () => {
+            currentSongIndex = index;
+            loadSong(currentSongIndex);
+        };
+        if (index === currentSongIndex) li.classList.add('active');
+        playlistElement.appendChild(li);
+    });
+}
+
 function loadSong(index) {
   if (songs.length === 0) return;
   
-  // 1. Limpieza de memoria: Liberamos la URL anterior si existe
-  if (currentObjectURL) {
-    URL.revokeObjectURL(currentObjectURL);
-  }
+  if (currentObjectURL) URL.revokeObjectURL(currentObjectURL);
   
   const song = songs[index];
-  
-  // 2. Crear nueva URL para el archivo seleccionado
   currentObjectURL = URL.createObjectURL(song);
   
   audioElement.src = currentObjectURL;
   songTitleElement.textContent = song.name.replace(/\.[^/.]+$/, ""); 
   
-  // Intentar reproducir automáticamente
-  audioElement.play().catch(error => {
-    console.log("La reproducción automática fue bloqueada por el navegador hasta que interactúes con la página.");
-  });
+  // Actualizar visual de la lista
+  updatePlaylistUI();
+
+  audioElement.play().catch(e => console.log("Play bloqueado"));
 }
 
 function nextTrack() {
@@ -50,7 +60,4 @@ function prevTrack() {
   loadSong(currentSongIndex);
 }
 
-// 3. ¡Magia! Pasar a la siguiente canción automáticamente al terminar
-audioElement.addEventListener('ended', () => {
-  nextTrack();
-});
+audioElement.addEventListener('ended', nextTrack);

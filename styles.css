@@ -1,79 +1,150 @@
 :root {
-  --primary: #6366f1;
-  --bg: #f3f4f6;
-  --card: #ffffff;
-  --text: #1f2937;
+  --primary: #1db954; /* Verde tipo Spotify */
+  --bg: #121212;
+  --card: #181818;
+  --text: #ffffff;
+  --text-dim: #b3b3b3;
 }
 
 body {
   font-family: 'Inter', sans-serif;
   background-color: var(--bg);
+  color: var(--text);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
 }
 
 .player-card {
   background: var(--card);
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  width: 350px;
-  text-align: center;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+  width: 380px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Imagen de Folder de Álbum */
+.album-container {
+    width: 100%;
+    aspect-ratio: 1/1;
+    margin-bottom: 1.5rem;
+    perspective: 1000px;
+}
+
+.album-art {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #333, #111);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de disco que sale del folder */
+.vinyl-record {
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle, #222 20%, #111 21%, #111 100%);
+    border-radius: 50%;
+    border: 2px solid #333;
 }
 
 .song-title {
   font-weight: 600;
-  font-size: 1.2rem;
-  color: var(--text);
-  margin-bottom: 0.5rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 1.3rem;
+  margin-bottom: 0.2rem;
+  text-align: left;
 }
 
-/* Ocultar el input original y crear uno bonito */
+.status {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    text-align: left;
+    margin: 0 0 1rem 0;
+}
+
 #file-input { display: none; }
 .custom-file-upload {
-  background: var(--primary);
-  color: white;
-  padding: 6px 12px;
-  border-radius: 8px;
+  background: white;
+  color: black;
+  padding: 6px 15px;
+  border-radius: 20px;
   cursor: pointer;
-  font-size: 0.8rem;
-  transition: 0.3s;
+  font-size: 0.75rem;
+  font-weight: bold;
 }
 
 .main-audio {
   width: 100%;
-  margin: 1.5rem 0;
+  filter: invert(100%); /* Hace que el control de audio nativo se vea blanco */
+  height: 35px;
+  margin-bottom: 1rem;
 }
 
 .controls {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   justify-content: center;
+  margin-bottom: 1.5rem;
 }
 
 button {
   border: none;
-  padding: 10px 20px;
-  border-radius: 10px;
+  background: none;
+  color: white;
+  font-size: 1.5rem;
   cursor: pointer;
-  font-weight: 600;
-  transition: transform 0.2s;
+  transition: 0.2s;
 }
 
-button:active { transform: scale(0.95); }
+button:hover { color: var(--primary); transform: scale(1.1); }
 
-.btn-primary { background: var(--primary); color: white; }
-.btn-secondary { background: #e5e7eb; color: var(--text); }
+/* Playlist */
+.playlist-container {
+    border-top: 1px solid #333;
+    padding-top: 1rem;
+    overflow-y: auto;
+    max-height: 200px;
+}
+
+.playlist-container h3 {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+}
+
+.playlist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.playlist li {
+    padding: 10px;
+    font-size: 0.85rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.playlist li:hover { background: #282828; }
+.playlist li.active { color: var(--primary); font-weight: bold; }

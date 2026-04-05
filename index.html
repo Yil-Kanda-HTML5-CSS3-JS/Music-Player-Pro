@@ -11,21 +11,33 @@
 
   <div class="player-card">
     <div class="header">
-      <h2>Reproductor</h2>
-      <label for="file-input" class="custom-file-upload">Subir Música</label>
+      <h2>Mi Música</h2>
+      <label for="file-input" class="custom-file-upload">Añadir Temas</label>
       <input type="file" id="file-input" multiple accept="audio/*" />
+    </div>
+
+    <div class="album-container">
+        <div class="album-art" id="album-art">
+            <div class="vinyl-record"></div>
+        </div>
     </div>
 
     <div class="info-section">
       <div id="songTitle" class="song-title">Selecciona una canción</div>
-      <p class="status">Listo para reproducir</p>
+      <p id="artistName" class="status">Sube tus archivos de audio</p>
     </div>
 
     <audio id="audio" class="main-audio" controls></audio>
 
     <div class="controls">
-      <button onclick="prevTrack()" class="btn-secondary">Anterior</button>
-      <button onclick="nextTrack()" class="btn-primary">Siguiente</button>
+      <button onclick="prevTrack()" class="btn-secondary">⏮</button>
+      <button onclick="nextTrack()" class="btn-primary">⏭</button>
+    </div>
+
+    <div class="playlist-container">
+        <h3>Lista de reproducción</h3>
+        <ul id="playlist" class="playlist">
+            </ul>
     </div>
   </div>
 
