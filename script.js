@@ -1,7 +1,9 @@
 const audioElement = document.getElementById('audio');
 const songTitleElement = document.getElementById('songTitle');
+const artistNameElement = document.getElementById('artistName');
 const fileInput = document.getElementById('file-input');
-const playlistElement = document.getElementById('playlist');
+const playPauseBtn = document.getElementById('playPauseBtn');
+const playlistContainer = document.getElementById('playlist');
 
 let songs = [];
 let currentSongIndex = 0;
@@ -9,43 +11,48 @@ let currentObjectURL = null;
 
 fileInput.addEventListener('change', (e) => {
   songs = Array.from(e.target.files).filter(file => file.type.startsWith('audio/'));
-  
   if (songs.length > 0) {
-    updatePlaylistUI();
-    currentSongIndex = 0;
-    loadSong(currentSongIndex);
+    renderPlaylist();
+    loadSong(0);
   }
 });
 
-function updatePlaylistUI() {
-    playlistElement.innerHTML = "";
-    songs.forEach((song, index) => {
-        const li = document.createElement('li');
-        li.textContent = `${index + 1}. ${song.name.replace(/\.[^/.]+$/, "")}`;
-        li.onclick = () => {
-            currentSongIndex = index;
-            loadSong(currentSongIndex);
-        };
-        if (index === currentSongIndex) li.classList.add('active');
-        playlistElement.appendChild(li);
-    });
+function renderPlaylist() {
+  playlistContainer.innerHTML = '';
+  songs.forEach((song, index) => {
+    const item = document.createElement('div');
+    item.classList.add('playlist-item');
+    if (index === currentSongIndex) item.classList.add('active');
+    
+    item.innerHTML = `<span>${index + 1}. ${song.name.substring(0, 30)}...</span>`;
+    item.onclick = () => loadSong(index);
+    playlistContainer.appendChild(item);
+  });
 }
 
 function loadSong(index) {
-  if (songs.length === 0) return;
-  
   if (currentObjectURL) URL.revokeObjectURL(currentObjectURL);
   
+  currentSongIndex = index;
   const song = songs[index];
   currentObjectURL = URL.createObjectURL(song);
   
   audioElement.src = currentObjectURL;
-  songTitleElement.textContent = song.name.replace(/\.[^/.]+$/, ""); 
+  songTitleElement.textContent = song.name.replace(/\.[^/.]+$/, "");
+  artistNameElement.textContent = "Archivo Local";
   
-  // Actualizar visual de la lista
-  updatePlaylistUI();
+  renderPlaylist(); // Actualizar color en la lista
+  togglePlay(true);
+}
 
-  audioElement.play().catch(e => console.log("Play bloqueado"));
+function togglePlay(forcePlay = false) {
+  if (audioElement.paused || forcePlay) {
+    audioElement.play();
+    playPauseBtn.textContent = '⏸';
+  } else {
+    audioElement.pause();
+    playPauseBtn.textContent = '▶';
+  }
 }
 
 function nextTrack() {

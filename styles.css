@@ -1,15 +1,15 @@
 :root {
-  --primary: #1db954; /* Verde tipo Spotify */
-  --bg: #121212;
-  --card: #181818;
-  --text: #ffffff;
-  --text-dim: #b3b3b3;
+  --spotify-green: #1DB954;
+  --bg-black: #121212;
+  --card-dark: #181818;
+  --text-white: #ffffff;
+  --text-gray: #b3b3b3;
 }
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: var(--bg);
-  color: var(--text);
+  background-color: var(--bg-black);
+  color: var(--text-white);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,133 +18,124 @@ body {
 }
 
 .player-card {
-  background: var(--card);
+  background: var(--card-dark);
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-  width: 380px;
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
+  width: 320px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Imagen de Folder de Álbum */
-.album-container {
-    width: 100%;
-    aspect-ratio: 1/1;
-    margin-bottom: 1.5rem;
-    perspective: 1000px;
-}
-
+/* Imagen del Álbum */
 .album-art {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, #333, #111);
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-    position: relative;
-    overflow: hidden;
-}
-
-/* Efecto de disco que sale del folder */
-.vinyl-record {
-    width: 80%;
-    height: 80%;
-    background: radial-gradient(circle, #222 20%, #111 21%, #111 100%);
-    border-radius: 50%;
-    border: 2px solid #333;
-}
-
-.song-title {
-  font-weight: 600;
-  font-size: 1.3rem;
-  margin-bottom: 0.2rem;
-  text-align: left;
-}
-
-.status {
-    color: var(--text-dim);
-    font-size: 0.9rem;
-    text-align: left;
-    margin: 0 0 1rem 0;
-}
-
-#file-input { display: none; }
-.custom-file-upload {
-  background: white;
-  color: black;
-  padding: 6px 15px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 0.75rem;
-  font-weight: bold;
-}
-
-.main-audio {
   width: 100%;
-  filter: invert(100%); /* Hace que el control de audio nativo se vea blanco */
-  height: 35px;
-  margin-bottom: 1rem;
-}
-
-.controls {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
+  aspect-ratio: 1/1;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
   margin-bottom: 1.5rem;
 }
 
-button {
-  border: none;
-  background: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: 0.2s;
+.album-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-button:hover { color: var(--primary); transform: scale(1.1); }
+.info-section {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.song-title {
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 0.3rem;
+}
+
+.artist-name {
+  color: var(--text-gray);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Controles */
+.controls-main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  color: var(--text-gray);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-icon:hover { color: white; }
+
+.btn-play {
+  background: white;
+  color: black;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.btn-play:hover { transform: scale(1.05); }
 
 /* Playlist */
 .playlist-container {
-    border-top: 1px solid #333;
-    padding-top: 1rem;
-    overflow-y: auto;
-    max-height: 200px;
+  border-top: 1px solid #282828;
+  padding-top: 1rem;
+  max-height: 150px;
+  overflow-y: auto;
 }
 
 .playlist-container h3 {
-    font-size: 0.9rem;
-    color: var(--text-dim);
-    margin-bottom: 10px;
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
 }
 
-.playlist {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.playlist-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s;
 }
 
-.playlist li {
-    padding: 10px;
-    font-size: 0.85rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.2s;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+.playlist-item:hover { background: #282828; }
+.playlist-item.active { color: var(--spotify-green); }
 
-.playlist li:hover { background: #282828; }
-.playlist li.active { color: var(--primary); font-weight: bold; }
+/* Input de archivo */
+#file-input { display: none; }
+.plus-button {
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--text-gray);
+}
+.plus-button:hover { color: white; }
