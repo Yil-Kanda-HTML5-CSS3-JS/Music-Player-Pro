@@ -1,46 +1,51 @@
 # Music Player Pro 🎵
 
-A lightweight, modern, and responsive web-based music player that allows users to upload and play local audio files directly in the browser.
+A premium, Spotify-inspired web music player featuring a sleek dark interface, custom media controls, and dynamic playlist management.
 
-## 🚀 Features
+## 🌟 What's New (v2.0)
 
-* **Local File Support:** Upload multiple audio files simultaneously from your device.
-* **Smart Playlist:** Navigate through your uploaded tracks using "Previous" and "Next" controls.
-* **Auto-play Logic:** Automatically transitions to the next track when the current one finishes.
-* **Modern UI:** Clean, minimalist design built with CSS variables and the Inter font.
-* **Memory Efficient:** Uses `URL.revokeObjectURL` to ensure stable performance and prevent memory leaks.
+* **Modern Dark UI:** Completely redesigned interface using a deep-dark color palette and high-contrast typography.
+* **Custom Media Controls:** Replaced native browser players with custom-built Play/Pause, Next, and Previous buttons for a seamless experience.
+* **Interactive Playlist:** A dedicated "Next up" section that allows you to browse and switch between tracks with a single click.
+* **Album Art Support:** Added a dedicated container for album covers with smooth transition effects.
+* **Improved UX:** Real-time track highlighting and name truncation to keep the interface clean and organized.
 
-## 🛠️ Technologies Used
+## 🚀 Key Features
 
-* **HTML5:** Semantic structure and native Audio API.
-* **CSS3:** Custom properties (variables), Flexbox, and modern UI styling.
-* **JavaScript (ES6+):** Dynamic file handling and DOM manipulation.
-* **Google Fonts:** "Inter" for a clean typography.
+* **Local Library:** Load multiple audio files directly from your computer using the new "+" button.
+* **Smart Playback:** Auto-advances to the next song when the current one ends.
+* **Memory Management:** Automatically revokes Blob URLs to ensure zero memory leaks during long sessions.
+* **Responsive Design:** Optimized for both desktop and compact window views.
+
+## 🛠️ Tech Stack
+
+* **HTML5:** Semantic structure and hidden Native Audio API.
+* **CSS3:** Custom properties (variables), Flexbox, and advanced hover effects.
+* **JavaScript (ES6+):** Logic for playlist rendering, state management (Play/Pause toggle), and File API integration.
+* **Fonts:** Inter (400, 600, 700) via Google Fonts.
 
 ## 📂 Project Structure
 
 ```text
-├── index.html   # Main application structure
-├── styles.css   # Visual styling and responsiveness
-└── script.js    # Playback logic and file management
+├── index.html          # Modernized structure with custom controls
+├── styles.css          # Dark theme and Spotify-inspired styling
+├── script.js           # Core playback and playlist logic
+└── album-art.jpg       # Default album art placeholder
 
 ```
 
 ## ⚙️ How to Use
 
-1.  **Clone or Download** the repository to your local machine.
+1.  **Launch:** Open `index.html` in any modern browser.
     
-2.  Open `index.html` in any modern web browser (Chrome, Firefox, Edge, Safari).
+2.  **Import:** Click the **"+"** icon in the top right to select your audio files.
     
-3.  Click the **"Subir Música"** button to select audio files from your computer.
+3.  **Play:** Click the central play button or select a specific track from the "Siguiente en la lista" section.
     
-4.  Use the player controls to play, pause, or skip between tracks.
+4.  **Navigate:** Use the skip buttons (⏮, ⏭) to move through your temporary library.
     
-
-## 📝 Technical Note
-
-This player uses the **Web File API**. To comply with modern browser security policies, auto-play will trigger once the user has interacted with the page (e.g., after selecting the files).
 
 ----------
 
+Built for performance and style. 🎧
 Developed with ❤️ for the web.
